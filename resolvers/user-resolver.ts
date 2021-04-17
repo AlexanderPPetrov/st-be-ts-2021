@@ -6,13 +6,12 @@ import bcryptjs from "bcryptjs";
 @Resolver()
 export class UserResolver {
     
-    @Authorized(["read:users"])
+    @Authorized(["ADMIN"])
     @Query(returns => [User])
     async users(): Promise<User[]> {
         return await UserModel.find({});
     }
 
-    @Authorized(["create:user"])
     @Mutation(returns => User) 
     async createUser(@Arg("data") data: CreateUserInput): Promise<User> {
     
